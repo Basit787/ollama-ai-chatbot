@@ -1,0 +1,30 @@
+{
+  "name": "ollama-ai-chatbot",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local-first AI chatbot with Ollama streaming, model switching, and React UI",
+  "workspaces": ["server", "client"],
+  "scripts": {
+    "dev": "concurrently -n server,client -c cyan,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w server && npm run build -w client",
+    "build:server": "npm run build -w server",
+    "build:client": "npm run build -w client",
+    "start": "npm run start -w server",
+    "preview": "npm run preview -w client",
+    "db:seed": "npm run db:seed -w server",
+    "db:reset": "npm run db:reset -w server",
+    "db:up": "docker compose up mongo -d",
+    "docker:up": "docker compose up -d",
+    "docker:up:build": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:restart": "docker compose restart",
+    "docker:reset": "docker compose down -v && docker compose up --build -d",
+    "docker:logs": "docker compose logs -f",
+    "restart": "npm run docker:restart"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
